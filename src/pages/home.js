@@ -29,7 +29,7 @@ const StyledHome = styled.main`
   background: radial-gradient(circle at 0% 60%, rgba(255, 220, 248, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(225, 243, 243, 1) 58%);
 
   div.shadow-container {
-    filter: drop-shadow(-10pt 0 50pt rgba(0,0,0,0.3));
+    filter: drop-shadow(-10pt 0 50pt rgba(0,0,0,0.2));
     div.trapezium1 {
       position: absolute;
       top: 0;
@@ -59,6 +59,7 @@ const StyledHome = styled.main`
       margin-top: 18vh;
       flex: 1;
       z-index: 3;
+      margin-bottom: 8vh;
     }
   }
 `

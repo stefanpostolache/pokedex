@@ -45,4 +45,17 @@ export default function PokemonData () {
 const StyledPokemonData = styled.div`
     margin-left: 300pt;
     overflow-y: scroll;
+    margin-right: 1rem;
+
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #FC5E43; 
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #920102;
+    }
 `
