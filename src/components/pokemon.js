@@ -40,6 +40,7 @@ const StyledPokemon = styled.div`
     padding: 0 2rem;
     border-radius: 30pt;
     position: relative;
+    /* transition: background-color 0.2s ease; */
 
     .trapezium-black {
         position: absolute;
@@ -50,7 +51,7 @@ const StyledPokemon = styled.div`
         height: 100%;
         border-top-right-radius: 30pt;
         border-bottom-right-radius: 30pt;
-        clip-path: polygon(5% 0%, 100% 0, 100% 100%, 0% 100%)
+        clip-path: polygon(5% 0%, 100% 0, 100% 100%, 0% 100%);
     }
 
     h1, h2 {
@@ -76,6 +77,9 @@ const StyledPokemon = styled.div`
         .trapezium-black {
             background-color: black;
         }
+        img {
+            filter: brightness(100%);
+        }
     }
 
     .name-number-container {
@@ -92,6 +96,8 @@ const StyledPokemon = styled.div`
         left: 0;
         top: 50%;
         transform: translateY(-50%) translateX(-20%);
+        transition: filter 0.5s ease;
+        filter: brightness(50%);
     }
 
 `
