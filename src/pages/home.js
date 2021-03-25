@@ -55,8 +55,8 @@ const StyledHome = styled.main`
     height: 100vh;
     width: 100%;
     display: flex;
-
-    div {
+    & > div {
+      margin-top: 18vh;
       flex: 1;
       z-index: 3;
     }
