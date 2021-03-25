@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller"
 import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 import loadActionAsync from "../actions/load-action";
+import selectActionAsync from "../actions/select-action";
 import Pokemon from "./pokemon";
 
 export default function PokemonData () {
@@ -15,6 +16,10 @@ export default function PokemonData () {
     const pokemonData = useSelector(state => state.load.pokemon);
 
     const [hasMore, setHasMore] = useState(true);
+
+    useEffect(() => {
+        dispatch(selectActionAsync(1));
+    }, [dispatch])
 
     const fetchMorePokemon = () => {
         if (pokemonData.length >= 898) {

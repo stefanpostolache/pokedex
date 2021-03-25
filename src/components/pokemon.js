@@ -1,13 +1,24 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import selectActionAsync from "../actions/select-action";
 import { imageUrlForPokemonWithId } from "../api";
 
 export default function Pokemon ({pokemon}) {
+
+    const dispatch = useDispatch();
+
     const urlParts = pokemon.url.split('/');
     const pokemonId = urlParts[urlParts.length - 2]
     const pokemonIdFormatted = `00${pokemonId}`.slice(-3);
 
+    const {id} = useSelector(state => state.details.details);
+
+    const onClickHandler = () => {
+        dispatch(selectActionAsync(Number(pokemonId)))
+    }
+
     return (
-        <StyledPokemon className={Number(pokemonId) === 1 ? "selected" : ""}>
+        <StyledPokemon className={Number(pokemonId) === id ? "selected" : ""} onClick={onClickHandler}>
             <div className="trapezium-black"></div>
             <img src={imageUrlForPokemonWithId(pokemonId)} alt={pokemon.name} />
             <div className="name-number-container">
