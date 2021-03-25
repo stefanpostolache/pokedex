@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller"
 import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
@@ -9,6 +9,9 @@ export default function PokemonData () {
 
     const dispatch = useDispatch();
 
+    const infiniteScrollRef = useRef(null);
+    console.log(infiniteScrollRef)
+
     const pokemonData = useSelector(state => state.load.pokemon);
 
     const [hasMore, setHasMore] = useState(true);
@@ -17,7 +20,7 @@ export default function PokemonData () {
         if (pokemonData.length >= 898) {
             setHasMore(false);
         } else {
-            dispatch(loadActionAsync(pokemonData ? pokemonData.length : 0))
+            dispatch(loadActionAsync(infiniteScrollRef.current ? infiniteScrollRef.current.pageLoaded - 1 : 0))
         }
     }
 
@@ -33,7 +36,8 @@ export default function PokemonData () {
                 hasMore={hasMore}
                 loader={<div className="loader" key={0}>Loading ...</div>}
                 initialLoad={true}
-                useWindow={false}>
+                useWindow={false}
+                ref={infiniteScrollRef}>
                     {
                         pokemonData ? pokemonData.map(pokemon => <Pokemon pokemon={pokemon} />) : <p>No Data</p>
                     }

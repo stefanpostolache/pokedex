@@ -1,14 +1,15 @@
 import axios from "axios"
 import { pokemonListDataURL } from "../api"
 
-export default function loadActionAsync (startingFrom) {
+export default function loadActionAsync (page) {
+    console.log(`page number: ${page}`);
     return async (dispatch) => {
         let pokemonData;
-        const range = startingFrom + 100;
+        const range = page*100 + 100;
         if (range >= 898) {
-            pokemonData = await axios.get(pokemonListDataURL(startingFrom, 98));
+            pokemonData = await axios.get(pokemonListDataURL(page*100, 98));
         } else {
-            pokemonData = await axios.get(pokemonListDataURL(startingFrom));
+            pokemonData = await axios.get(pokemonListDataURL(page*100));
         }
         dispatch(loadAction(pokemonData))
     }

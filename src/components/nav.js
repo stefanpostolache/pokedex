@@ -26,13 +26,13 @@ const StyledNav = styled.nav`
         width: 100vw;
         height: 100%;
         .trapezium-nav {
-            width: 39.5%;
+            width: 39.55%;
             height: 100%;
             background-color: #333333;
             position: absolute;
             right: 0;
             top: 0;
-            clip-path: polygon(7.5% 0%, 100% 0, 100% 100%, 0% 100%);
+            clip-path: polygon(7.6% 0%, 100% 0, 100% 100%, 0% 100%);
         }
         h1 {
             position: absolute;
