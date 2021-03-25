@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import selectActionAsync from "../actions/select-action";
 import { imageUrlForPokemonWithId } from "../api";
+import pokeChevron from '../img/poke_chevron.png';
 
 export default function Pokemon ({pokemon}) {
 
@@ -20,7 +21,10 @@ export default function Pokemon ({pokemon}) {
     return (
         <StyledPokemon className={Number(pokemonId) === id ? "selected" : ""} onClick={onClickHandler}>
             <div className="trapezium-black"></div>
-            <img src={imageUrlForPokemonWithId(pokemonId)} alt={pokemon.name} />
+            <img className="pokemon-icon" src={imageUrlForPokemonWithId(pokemonId)} alt={pokemon.name} />
+            {
+                (Number(pokemonId) === id) && <img className="chevron" src={pokeChevron} alt="" />
+            }
             <div className="name-number-container">
                 <div>
                     <h1>{`No. ${pokemonIdFormatted}`}</h1>
@@ -32,6 +36,14 @@ export default function Pokemon ({pokemon}) {
         </StyledPokemon>
     )
 }
+
+const chevronAnimation = keyframes`
+    from {
+        transform: translateX(-130%) translateY(-50%);
+    } to {
+        transform: translateX(-110%) translateY(-50%);
+    }
+`
 
 const StyledPokemon = styled.div`
     margin-top: 2rem;
@@ -77,7 +89,7 @@ const StyledPokemon = styled.div`
         .trapezium-black {
             background-color: black;
         }
-        img {
+        img.pokemon-icon {
             filter: brightness(100%);
         }
     }
@@ -91,13 +103,21 @@ const StyledPokemon = styled.div`
         }
     }
 
-    img {
+    img.pokemon-icon {
         position: absolute;
         left: 0;
         top: 50%;
         transform: translateY(-50%) translateX(-20%);
         transition: filter 0.5s ease;
         filter: brightness(50%);
+    }
+
+    img.chevron {
+        position: absolute;
+        height: 45pt;
+        top: 50%;
+        transform: translateY(-50%) translateX(-130%);
+        animation: ${chevronAnimation} 1s ease infinite alternate;
     }
 
 `
