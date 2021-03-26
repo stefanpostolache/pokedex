@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import styled, { keyframes } from "styled-components";
 import selectActionAsync from "../actions/select-action";
 import { imageUrlForPokemonWithId } from "../api";
 import chevronIcon from '../img/pokedex_chevron.png'
 
 export default function Pokemon ({pokemon}) {
+
+    const history = useHistory();
 
     const dispatch = useDispatch()
 
@@ -15,7 +18,11 @@ export default function Pokemon ({pokemon}) {
     const selectedPokemon = useSelector(state => state.details.details.details);
 
     const onClickHandler = () => {
-        dispatch(selectActionAsync(Number(pokemonId)));
+        if (selectedPokemon && Number(pokemonId) === selectedPokemon.id) {
+            history.push(`/details/${pokemonId}`);
+        } else {
+            dispatch(selectActionAsync(Number(pokemonId)));
+        }
     }
 
     return (
@@ -123,7 +130,7 @@ const StyledPokemon = styled.div`
         height: 45pt;
         top: 50%;
         transform: translateX(-130%) translateY(-50%);
-        animation: ${chevronAnimation} 1s ease infinite alternate;
+        animation: ${chevronAnimation} 0.5s ease infinite alternate;
         display: none;
     }
 

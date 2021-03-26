@@ -5,6 +5,8 @@ export const pokemonListDataURL = (startingFrom, ofNPokemon) => {
     return url;
 }
 
+export const speciesUrlForPokemonWihId = id => `https://pokeapi.co/api/v2/pokemon-species/${id}/`;
+
 export const detailsUrlForPokemonWithId = id => `https://pokeapi.co/api/v2/pokemon/${id}`;
 
 export const imageUrlForPokemonWithId = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;

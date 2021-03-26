@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Nav from '../components/nav';
 import PokemonData from '../components/pokemon-data';
 import PokemonImage from '../components/pokemon-image';
+import { StyledContainer } from '../styles';
 
 export default function Home () {
     return (
@@ -22,11 +23,7 @@ export default function Home () {
     )
 }
 
-const StyledHome = styled.main`
-  min-height: 100vh;
-  width: 100%;
-  background: rgb(255, 220, 248);
-  background: radial-gradient(circle at 0% 60%, rgba(255, 220, 248, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(225, 243, 243, 1) 58%);
+const StyledHome = styled(StyledContainer)`
 
   div.shadow-container {
     filter: drop-shadow(-10pt 0 50pt rgba(0,0,0,0.3));
@@ -49,16 +46,5 @@ const StyledHome = styled.main`
     width: 50vw;
     clip-path: polygon(58% 0%, 100% 0, 100% 100%, 0% 100%);
     background-color: #fa7247;
-  }
-
-  div.content {
-    height: 94vh;
-    width: 100%;
-    display: flex;
-    & > div {
-      margin-top: 18vh;
-      flex: 1;
-      z-index: 3;
-    }
   }
 `

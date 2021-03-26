@@ -1,5 +1,6 @@
 import { Route, Switch } from "react-router";
 import GlobalStyle from "./components/global-style";
+import Details from "./pages/details";
 import Home from "./pages/home";
 
 function App() {
@@ -9,6 +10,9 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Home />
+        </Route>
+        <Route path="/details/:id">
+          <Details />
         </Route>
       </Switch>
     </div>
