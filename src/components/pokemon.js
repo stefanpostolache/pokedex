@@ -1,17 +1,32 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
+import selectActionAsync from "../actions/select-action";
 import { imageUrlForPokemonWithId } from "../api";
 import chevronIcon from '../img/pokedex_chevron.png'
 
 export default function Pokemon ({pokemon}) {
+
+    const dispatch = useDispatch()
+
     const urlParts = pokemon.url.split('/');
     const pokemonId = urlParts[urlParts.length - 2]
     const pokemonIdFormatted = `00${pokemonId}`.slice(-3);
 
+    const selectedPokemon = useSelector(state => state.details.details.details);
+
+    const onClickHandler = () => {
+        dispatch(selectActionAsync(Number(pokemonId)));
+    }
+
     return (
-        <StyledPokemon className={pokemonId == 1 ? "selected" : ""}>
+        <StyledPokemon className={selectedPokemon && Number(pokemonId) === selectedPokemon.id ? "selected" : ""} onClick={onClickHandler}>
             <img className="pokemon-icon" src={imageUrlForPokemonWithId(pokemonId)} alt={pokemon.name} />
-            <div className="trapezium-black"></div>
-            <img className="chevron" src={chevronIcon} />
+            {
+                (selectedPokemon && Number(pokemonId) === selectedPokemon.id) && (<>
+                <div className="trapezium-black"></div>
+                <img className="chevron" src={chevronIcon} alt="" />
+                </>)
+            }
             <div className="name-number-container">
                 <div>
                     <h1>{`No. ${pokemonIdFormatted}`}</h1>
@@ -34,7 +49,7 @@ const chevronAnimation = keyframes`
 
 const StyledPokemon = styled.div`
     margin-top: 2rem;
-    margin-right: 2rem;
+    margin-right: 1.5rem;
     margin-left: 3rem;
     padding: 0 2rem;
     border-radius: 30pt;
@@ -78,6 +93,9 @@ const StyledPokemon = styled.div`
         .chevron {
             display: block;;
         }
+        .pokemon-icon {
+            filter: brightness(100%);
+        }
     }
 
     .name-number-container {
@@ -96,6 +114,8 @@ const StyledPokemon = styled.div`
         left: 0;
         top: 50%;
         transform: translateY(-50%) translateX(-20%);
+        filter: brightness(50%);
+        transition: filter 0.5s ease;
     }
 
     img.chevron {

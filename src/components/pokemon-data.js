@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller"
 import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 import loadActionAsync from "../actions/load-action";
+import selectActionAsync from "../actions/select-action";
 import Pokemon from "./pokemon";
 
 export default function PokemonData () {
@@ -21,9 +22,9 @@ export default function PokemonData () {
         }
     }
 
-    // useEffect(() => {
-    //     fetchMorePokemon(dispatch);
-    // },[dispatch])
+    useEffect(() => {
+        dispatch(selectActionAsync(1));
+    },[dispatch])
 
     return (
         <StyledPokemonData>
@@ -45,4 +46,17 @@ export default function PokemonData () {
 const StyledPokemonData = styled.div`
     margin-left: 300pt;
     overflow-y: scroll;
+    margin-right: 1rem;
+
+    ::-webkit-scrollbar-track {
+        background-color: #8E0001
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #FF5A43;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.5rem;
+    }
 `

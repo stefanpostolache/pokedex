@@ -52,7 +52,7 @@ const StyledHome = styled.main`
   }
 
   div.content {
-    height: 100vh;
+    height: 94vh;
     width: 100%;
     display: flex;
     & > div {
