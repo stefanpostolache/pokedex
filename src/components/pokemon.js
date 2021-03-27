@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import styled, { keyframes } from "styled-components";
 import selectActionAsync from "../actions/select-action";
 import { imageUrlForPokemonWithId } from "../api";
-import chevronIcon from '../img/pokedex_chevron.png'
+import chevronIcon from '../res/img/pokedex_chevron.png'
 
 export default function Pokemon ({pokemon}) {
 
@@ -27,7 +27,7 @@ export default function Pokemon ({pokemon}) {
 
     return (
         <StyledPokemon className={selectedPokemon && Number(pokemonId) === selectedPokemon.id ? "selected" : ""} onClick={onClickHandler}>
-            <img className="pokemon-icon" src={imageUrlForPokemonWithId(pokemonId)} alt={pokemon.name} />
+            <img className="pokemon-icon" src={imageUrlForPokemonWithId(pokemonId)} alt={pokemon.name} loading="lazy"/>
             {
                 (selectedPokemon && Number(pokemonId) === selectedPokemon.id) && (<>
                 <div className="trapezium-black"></div>

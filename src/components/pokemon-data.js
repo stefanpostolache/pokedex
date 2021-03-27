@@ -14,6 +14,8 @@ export default function PokemonData () {
 
     const [hasMore, setHasMore] = useState(true);
 
+    const selectedPokemon = useSelector(state => state.details.details.details);
+
     const fetchMorePokemon = () => {
         if (pokemonData.length >= 898) {
             setHasMore(false);
@@ -23,8 +25,10 @@ export default function PokemonData () {
     }
 
     useEffect(() => {
-        dispatch(selectActionAsync(1));
-    },[dispatch])
+        if (!selectedPokemon) {
+            dispatch(selectActionAsync(1));
+        }
+    },[dispatch, selectedPokemon])
 
     return (
         <StyledPokemonData>
